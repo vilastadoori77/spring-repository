@@ -1,0 +1,113 @@
+1) need to export the following variable before running the (> cqlsh)  
+
+	export CQLSH_NO_BUNDLED=true
+
+2) Show all the databases in cassandra the command is :
+
+	DESCRIBE KEYSPACES;
+
+3) To use a particular database
+
+	use <keyspace_name>
+
+
+3) To show all the tables
+
+	DESCRIBE tables;
+
+2) Creating an DB called example and mydb
+
+CREATE KEYSPACE mydb WITH replication = {'class':'SimpleStrategy', 'replication_factor' : 3};
+CREATE KEYSPACE example
+  WITH REPLICATION = { 
+   'class' : 'SimpleStrategy', 
+   'replication_factor' : 1 
+  };
+
+3)Creating a table
+
+CREATE TABLE emp(
+   emp_id int PRIMARY KEY,
+   emp_name text,
+   emp_city text,
+
+   emp_sal varint,
+   emp_phone varint
+   );
+
+
+
+create a the secondary index :
+The follwoing is the syntax for creating the secondary index...
+cqlsh:mydb> Create index on books(year);
+cqlsh:mydb> select * from books;
+
+
+
+cqlsh:example> SELECT * FROM users WHERE type='admin';
+
+
+Maps can be added into the table
+
+ALTER TABLE users ADD prefs map<varchar, varchar>;
+
+cqlsh:example> INSERT INTO users(id, email, name, password, type, prefs) VALUES('user2', 'user2@example.com', 'foo', 'super secret', 'fitter', {'spam': 'yes'});
+
+cqlsh:example> select * from users;
+
+
+4) When did the user last login
+
+cqlsh:example> select id, password, WRITETIME(password) FROM users;
+
+ id    | password     | writetime(password)
+-------+--------------+---------------------
+ user2 | super secret |    1487961366100640
+ user1 | super secret |    1487960538461222
+
+******************************************************************************************************************************************
+
+
+5)For unique insertion of records ( IF NOT EXISTS )
+
+
+
+
+cqlsh:example> INSERT INTO users(id, email, name, password, type, prefs) VALUES ('user1', 'user1@gmail.com', 'goo', 'super secret', 'aircond',{'spam':'yes'}) IF NOT EXISTS;
+
+ [applied]
+-----------
+      True
+
+cqlsh:example> INSERT INTO users(id, email, name, password, type, prefs) VALUES ('user1', 'user1@gmail.com', 'goo', 'super secret', 'aircond',{'spam':'yes'}) IF NOT EXISTS;
+
+ [applied] | id    | email           | name | password     | prefs           | type
+-----------+-------+-----------------+------+--------------+-----------------+---------
+     False | user1 | user1@gmail.com |  goo | super secret | {'spam': 'yes'} | aircond
+
+cqlsh:example> select * from users;
+
+ id    | email             | name | password     | prefs           | type
+-------+-------------------+------+--------------+-----------------+---------
+ user2 | user2@example.com |  foo | super secret | {'spam': 'yes'} |  fitter
+ user1 |   user1@gmail.com |  goo | super secret | {'spam': 'yes'} | aircond
+
+**********************************************************************************************************************************************
+6) insert into the database when the user exists
+
+
+7) Create a composite key in cassandra
+
+create table events(user varchar, event varchar, ttl timestamp, data varchar, PRIMARY KEY(user, event, ttl));
+
+
+
+
+
+
+
+
+
+
+
+
