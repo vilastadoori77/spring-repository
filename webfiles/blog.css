@@ -1,0 +1,38 @@
+body{
+
+	border:20px solid #bdc3c7;
+	padding:20px;
+	max-width: 700px;
+	width: 80%;
+	margin: 20px auto;
+	font-family:Source Sans Pro;
+
+}
+h2{
+
+	text-align: left;
+	font-size: 2.0rem;
+}
+
+.quote{
+
+	border-left:5px solid #bdc3c7;
+	padding:5px;
+
+}
+
+.date{
+	color:#3498db;
+	text-transform: uppercase;
+	letter-spacing: 0.2rem
+}
+
+.post{
+	margin:20px;
+}
+
+hr{
+	height: 6px;
+	background: url(http://ibrahimjabbari.com/english/images/hr-11.png) repeat-x 0 0;
+    border: 0;
+}
