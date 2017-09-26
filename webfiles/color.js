@@ -6,8 +6,8 @@
 							"rgb(255, 0, 255)"
 ]; */
 
-var colors = generateRandomColors(6);
-
+var numSquares = 6;
+var colors = generateRandomColors(numSquares);
 var squares = document.querySelectorAll(".square");
 //var pickedcolor = colors[4];
 
@@ -17,14 +17,57 @@ var reset = document.getElementById("reset");
 var colorDisplay = document.getElementById("pcolor");
 var message = document.querySelector("#message");
 var h1 = document.querySelector("h1");
+var easyBtn = document.querySelector("#easyBtn");
+var hardBtn = document.querySelector("#hardBtn");
 
 colorDisplay.textContent = pickedcolor;
 
 
+easyBtn.addEventListener("click", function(){
+
+	
+	hardBtn.classList.remove("selected");
+	easyBtn.classList.add("selected");
+	numSquares  = 3;
+	colors = generateRandomColors(numSquares);
+	pickedcolor = pickRandomColor();
+	colorDisplay.textContent = pickedcolor;
+	for( var i =0 ; i < squares.length; i++){
+
+		if(colors[i]){
+			squares[i].style.backgroundColor = colors[i];
+		}else{
+			squares[i].style.display ="none";
+		}
+	}
+
+
+});
+
+hardBtn.addEventListener("click", function(){
+
+	
+
+	hardBtn.classList.add("selected");
+	easyBtn.classList.remove("selected");
+	numSquares =6;
+	colors = generateRandomColors(numSquares);
+	pickedcolor = pickRandomColor();
+	colorDisplay.textContent = pickedcolor;
+	for( var i =0 ; i < squares.length; i++){
+
+		
+			squares[i].style.backgroundColor = colors[i];
+		
+			squares[i].style.display ="block";
+	}
+	
+
+});
+
 reset.addEventListener("click",function(){
 
-	alert("Hell you have clicked the new colors button");
-
+	//alert("Hell you have clicked the new colors button");	
 	colors = generateRandomColors(6);
 
 	pickedcolor = pickRandomColor();
@@ -33,9 +76,10 @@ reset.addEventListener("click",function(){
 
 	for(var i =0; i< colors.length; i++){
 		squares[i].style.backgroundColor=colors[i];
+		squares[i].style.display ="block";
 	}
 
-	h1.style.backgroundColor="#232323";
+	h1.style.backgroundColor="steelblue";
 	message.textContent =" ";
 	reset.textContent=" New Colors "
 
