@@ -1,0 +1,6 @@
+How to use it?
+
+	1) Copy the Todolistproject 
+	2) On chrome click on File -> Open File....
+	3) Ensure that the directory structure of the Todolistproject is maintained....
+	4) I have not bundled it with a DB yet
