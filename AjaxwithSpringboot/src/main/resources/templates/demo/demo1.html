@@ -1,0 +1,127 @@
+
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+
+<title>AJAX IN Spring Boot</title>
+
+	<script  type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"> </script>
+	<script type="text/javascript">
+
+		$(document).ready(function(){
+
+		$('#buttonDemo1').click(function(){
+
+				$.ajax({
+						type: 'GET',
+						url: '/api/ajaxrest/demo1',
+						success: function(result){
+								alert(result);
+								$('#result1').text(result);
+							}
+					});					
+			});
+
+
+		$('#buttonDemo2').click(function(){
+
+			alert("Button Clicked");
+			var fullName = $('#text1').val();
+			alert(fullName);
+
+				$.ajax({
+						type: 'GET',
+						url: '/api/ajaxrest/demo2/' + fullName,
+						success: function(result){
+								alert(result);
+								$('#result2').text(result);
+							}
+					});					
+			});
+
+
+
+		$('#buttonDemo3').click(function(){
+
+			$.ajax({
+					type: 'GET',
+					url: '/api/ajaxrest/demo3',
+					dataType:'json',
+					contentType:'application/json',
+					success: function(result){
+							var s = 'ID: '+ result.id;
+							s +=' ';
+							s += 'Name: '+ result.name;
+							s +=' ';
+							s += 'Price: '+ result.price;
+							
+							$('#result3').html(s);
+						}
+				});					
+		});
+
+
+		$('#buttonDemo4').click(function(){
+
+				$.ajax({
+					
+						type:	'GET',
+						url: '/api/ajaxrest/demo4',
+						dataType:'json',
+						contentType:'application/json',
+						success:function(result){								
+									$.each(result, function(i,prod){
+										var prod = "Product " + i + ": ID=" + prod.id + " ,Name=" + prod.name + ",Price=" + prod.price;
+										$('#result4').append('<li><h4>'+prod+'</h4></li>')
+										});
+							}
+					});			
+			});
+	 });
+			
+	</script>
+
+
+
+</head>
+<body>
+
+		
+		<fieldset>
+			<legend>Vilas Legend</legend>
+			<input type ="button" value = "Demo 1" id="buttonDemo1"/>
+			<br/>
+			<span id="result1"></span>
+		
+		</fieldset>
+		
+		
+		<fieldset>
+			<legend>Button Legend</legend>
+			<input type="text" value =" Enter your name" id="text1"/>
+			<input type ="button" value = "Demo 2" id="buttonDemo2"/>
+			<br/>
+			<span id="result2"></span>
+		
+		</fieldset>
+		
+		
+		<fieldset>
+			<legend>Button Legend 3</legend>
+			<input type ="button" value = "Demo 3" id="buttonDemo3"/>
+			<br/>
+			<span id="result3"></span>
+		
+		</fieldset>
+		
+		
+		<fieldset>
+			<legend>Button Legend 4</legend>
+			<input type ="button" value = "Demo 4" id="buttonDemo4"/>
+			<br/>
+			<div id="result4"></div>
+		
+		</fieldset>
+		
+
+</body>
+</html>
