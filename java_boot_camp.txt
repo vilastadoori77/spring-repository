@@ -1,0 +1,33 @@
+loops,( for, foreach, while, do while)
+oops ( inheritance, polymorphisim(runtime/static), dataabstaction, encapsulation)
+variables
+conditional statements
+scope ( public, private. protected)
+syntax
+jdbc(mysql)
+
+rest apis
+wsdl'scope --> 
+servlets and jsp's
+maven
+swing( jtable/jpane/contentpane/scrollpane,jframe) and jdbc connectivity
+parsing ( jdom/jax and dom)
+-----------------------------------------------------------------------------------------------
+intend to learn
+1) multithreading
+2) hibernate
+3) struts
+4) spring
+5) JMX
+6) JMS( Active MQ)
+7) apache spark /hadoop
+
+------------web perspective ------------
+1) Java script
+2) angular js
+3) nodejs
+4) html5
+
+others 
+1) python or php
+
